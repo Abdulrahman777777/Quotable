@@ -13,6 +13,14 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      height: {
+        half: "50vh",
+      },
+    },
+    fontFamily: {
+      sans: ["Annie Use Your Telescope", "sans-serif"],
+      mono: ["Major Mono Display", "monospace"],
+      Hand: ["Edu AU VIC WA NT Hand", "sans-serif"],
     },
   },
   plugins: [],

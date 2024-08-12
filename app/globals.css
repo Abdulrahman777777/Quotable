@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Major+Mono+Display&display=swap");
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

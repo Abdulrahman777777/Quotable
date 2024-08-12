@@ -1,113 +1,233 @@
+"use client";
+
 import Image from "next/image";
+import Fetching from "./fetching";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const [quote, setQuote] = useState("");
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className="w-screen h-screen">
+      <div className="text w-screen h-half flex justify-center items-end">
+        <h1 className="text-7xl font-Hand">Quotable</h1>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="select-your-quote font-Hand flex justify-center align-top">
+        <label htmlFor="quote-mode " className="font-Hand text-2xl m-5">
+          Choose a mode:
+        </label>
+        <select
+          name="mode"
+          id="mode"
+          className="w-1/4 m-5 bg-black border-white border-4 rounded-md text-white font-Hand"
+        >
+          <option value="age" className="bg-black ">
+            Age
+          </option>
+          <option className="bg-black" value="alone">
+            Alone
+          </option>
+          <option className="bg-black" value="anger">
+            Anger
+          </option>
+          <option className="bg-black" value="architecture">
+            Architecture
+          </option>
+          <option className="bg-black" value="art">
+            Art
+          </option>
+          <option className="bg-black" value="attitude">
+            Attitude
+          </option>
+          <option className="bg-black" value="beauty">
+            Beauty
+          </option>
+          <option className="bg-black" value="best">
+            Best
+          </option>
+          <option className="bg-black" value="birthday">
+            Birthday
+          </option>
+          <option className="bg-black" value="business">
+            Business
+          </option>
+          <option className="bg-black" value="car">
+            Car
+          </option>
+          <option className="bg-black" value="change">
+            Change
+          </option>
+          <option className="bg-black" value="communication">
+            Communication
+          </option>
+          <option className="bg-black" value="computers">
+            Computers
+          </option>
+          <option className="bg-black" value="cool">
+            Cool
+          </option>
+          <option className="bg-black" value="courage">
+            Courage
+          </option>
+          <option className="bg-black" value="dad">
+            Dad
+          </option>
+          <option className="bg-black" value="dad">
+            Dating
+          </option>
+          <option className="bg-black" value="death">
+            Death
+          </option>
+          <option className="bg-black" value="design">
+            Design
+          </option>
+          <option className="bg-black" value="dreams">
+            Dreams
+          </option>
+          <option className="bg-black" value="education">
+            Education
+          </option>
+          <option className="bg-black" value="environmental">
+            Environmental
+          </option>
+          <option className="bg-black" value="equality">
+            Equality
+          </option>
+          <option className="bg-black" value="experience">
+            Experience
+          </option>
+          <option className="bg-black" value="failure">
+            Failure
+          </option>
+          <option className="bg-black" value="faith">
+            Faith
+          </option>
+          <option className="bg-black" value="family">
+            Family
+          </option>
+          <option className="bg-black" value="famous">
+            Famous
+          </option>
+          <option className="bg-black" value="fear">
+            Fear
+          </option>
+          <option className="bg-black" value="fitness">
+            Fitness
+          </option>
+          <option className="bg-black" value="food">
+            Food
+          </option>
+          <option className="bg-black" value="forgiveness">
+            Forgiveness
+          </option>
+          <option className="bg-black" value="freedom">
+            Freedom
+          </option>
+          <option className="bg-black" value="friendship">
+            Friendship
+          </option>
+          <option className="bg-black" value="funny">
+            Funny
+          </option>
+          <option className="bg-black" value="future">
+            Future
+          </option>
+          <option className="bg-black" value="good">
+            Good
+          </option>
+          <option className="bg-black" value="government">
+            Government
+          </option>
+          <option className="bg-black" value="graduation">
+            Graduation
+          </option>
+          <option className="bg-black" value="happiness">
+            Happiness
+          </option>
+          <option className="bg-black" value="health">
+            Health
+          </option>
+          <option className="bg-black" value="history">
+            History
+          </option>
+          <option className="bg-black" value="home">
+            Home
+          </option>
+          <option className="bg-black" value="hope">
+            Hope
+          </option>
+          <option className="bg-black" value="humor">
+            Humor
+          </option>
+          <option className="bg-black" value="imagination">
+            Imagination
+          </option>
+          <option className="bg-black" value="inspirational">
+            Inspirational
+          </option>
+          <option className="bg-black" value="intelligence">
+            Intelligence
+          </option>
+          <option className="bg-black" value="jealousy">
+            Jealousy
+          </option>
+          <option className="bg-black" value="knowledge">
+            Knowledge
+          </option>
+          <option className="bg-black" value="leadership">
+            Leadership
+          </option>
+          <option className="bg-black" value="learning">
+            Learning
+          </option>
+          <option className="bg-black" value="legal">
+            Legal
+          </option>
+          <option className="bg-black" value="life">
+            Life
+          </option>
+          <option className="bg-black" value="love">
+            Love
+          </option>
+          <option className="bg-black" value="marriage">
+            Marriage
+          </option>
+          <option className="bg-black" value="medical">
+            Medical
+          </option>
+          <option className="bg-black" value="men">
+            Men
+          </option>
+          <option className="bg-black" value="mom">
+            Mom
+          </option>
+          <option className="bg-black" value="money">
+            Money
+          </option>
+          <option className="bg-black" value="morning">
+            Morning
+          </option>
+          <option className="bg-black" value="movies">
+            Movies
+          </option>
+          <option className="bg-black" value="morning">
+            Success
+          </option>
+        </select>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div
+        onClick={async (e) => {
+          const data = await Fetching(
+            e.target.parentElement.parentElement.children[1].children[1].value
+          );
+          setQuote(data[0].quote);
+        }}
+        className="button flex justify-center align-middle"
+      >
+        <button className="p-3 bg-slate-400 text-black font-Hand">
+          Get Quote
+        </button>
       </div>
+      <h1>{quote}</h1>
     </main>
   );
 }
