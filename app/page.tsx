@@ -12,7 +12,7 @@ export default function Home() {
     author: "",
   });
   const [isOpen, setIsOpen] = useState(false);
-  const select = useRef({ value: "" });
+  const select = useRef("" as any);
   const customStyles = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.336)",
@@ -262,7 +262,7 @@ export default function Home() {
         style={customStyles}
       >
         <div className="w-full h-full flex flex-col justify-around align-center">
-          <h1 className="text-black">"{quote.quote}"</h1>
+          <h1 className="text-black">{`"${quote.quote}"`}</h1>
           <h5 className="text-black">~{quote.author}</h5>
         </div>
       </Modal>

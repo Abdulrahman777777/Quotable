@@ -5,7 +5,7 @@ const fetchQuote = async (mode: string) => {
   const data = await fetch(fetcherText).catch((err) => {
     return "please try agian";
   });
-  if (data === "please try agian") {
+  if (typeof data == "string") {
     return data;
   } else {
     return data.json();
@@ -17,7 +17,7 @@ const fetchImage = async () => {
   const data = await fetch(fetcherImage).catch((err) => {
     return "please try agian";
   });
-  if (data === "please try agian") {
+  if (typeof data === "string") {
     return data;
   } else {
     return data.json();
