@@ -30,8 +30,13 @@ export default function Home() {
   };
   return (
     <main className="w-screen h-screen">
-      <div className="text w-screen h-half flex justify-center items-end">
-        <h1 className="text-7xl font-Hand">Quotable</h1>
+      <div className="text w-screen h-half flex justify-center items-end flex-wrap pb-5">
+        <h1 className="text-7xl font-Hand w-screen flex justify-center items-end h-full p-2">
+          Quotable
+        </h1>
+        <h4 className="w-screen flex justify-center items-center font-Hand pb-10">
+          Get a random quote to motivate you...
+        </h4>
       </div>
       <div className="select-your-quote font-Hand flex justify-center align-top">
         <label htmlFor="quote-Category " className="font-Hand text-2xl m-5">
