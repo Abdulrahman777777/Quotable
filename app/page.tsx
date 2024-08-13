@@ -3,21 +3,44 @@
 import Image from "next/image";
 import Fetching from "./fetching";
 import { useEffect, useRef, useState } from "react";
+import Modal from "react-modal";
 
 export default function Home() {
-  const [quote, setQuote] = useState("");
+  const [quote, setQuote] = useState({
+    quote: "",
+    image: "",
+    author: "",
+  });
+  const [isOpen, setIsOpen] = useState(false);
+  const select = useRef({ value: "" });
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.336)",
+    },
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width: "80vw",
+      height: "50vh",
+    },
+  };
   return (
     <main className="w-screen h-screen">
       <div className="text w-screen h-half flex justify-center items-end">
         <h1 className="text-7xl font-Hand">Quotable</h1>
       </div>
       <div className="select-your-quote font-Hand flex justify-center align-top">
-        <label htmlFor="quote-mode " className="font-Hand text-2xl m-5">
-          Choose a mode:
+        <label htmlFor="quote-Category " className="font-Hand text-2xl m-5">
+          Choose a Category:
         </label>
         <select
-          name="mode"
-          id="mode"
+          ref={select}
+          name="Catergory"
+          id="Category"
           className="w-1/4 m-5 bg-black border-white border-4 rounded-md text-white font-Hand"
         >
           <option value="age" className="bg-black ">
@@ -216,10 +239,9 @@ export default function Home() {
       </div>
       <div
         onClick={async (e) => {
-          const data = await Fetching(
-            e.target.parentElement.parentElement.children[1].children[1].value
-          );
-          setQuote(data[0].quote);
+          const data = await Fetching(select.current.value);
+          setQuote(data);
+          setIsOpen(true);
         }}
         className="button flex justify-center align-middle"
       >
@@ -227,7 +249,18 @@ export default function Home() {
           Get Quote
         </button>
       </div>
-      <h1>{quote}</h1>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={() => {
+          setIsOpen(false);
+        }}
+        style={customStyles}
+      >
+        <div className="w-full h-full flex flex-col justify-around align-center">
+          <h1 className="text-black">"{quote.quote}"</h1>
+          <h5 className="text-black">~{quote.author}</h5>
+        </div>
+      </Modal>
     </main>
   );
 }
